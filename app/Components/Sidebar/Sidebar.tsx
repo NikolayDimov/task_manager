@@ -1,26 +1,48 @@
 'use client';
 import React from 'react'
-import { SidebarStyles } from './Sidebar.style';
+import { SidebarImage, SidebarStyles, SidebarStylesProfile } from './Sidebar.style';
 import { useGlobalState } from '@/app/context/globalProvider';
 import Image from 'next/image';
+import menu from '@/app/utils/menu';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 function Sidebar() {
     const { theme } = useGlobalState();
+    const router = useRouter();
+    const pathname = usePathname();
+    const handleClick = (link: string) => {
+        router.push(link)
+    }
+
+
 
     return (
         <SidebarStyles theme={theme}>
-            <div className="profile">
+            <SidebarStylesProfile>
                 <div className="profile-overlay"></div>
-                <div className="image">
+                <SidebarImage>
                     <Image width={70} height={70} src="/avatar.jpg" alt="profile" />
-                </div>
+                </SidebarImage>
                 <h1>
                     <span>John</span>
                     <span>Doe</span>
                 </h1>
-            </div>
+            </SidebarStylesProfile>
             <ul className="nav-items">
+                {menu.map((item) => {
+                    const link = item.link;
+                    return <li
+                        className={`nav-item ${pathname === link ? "active" : ""}`}
+                        onClick={() => { handleClick(link) }}
+                        key={item.id}
+                    >
+                        {item.icon}
+                        <Link href={link}>{item.title}</Link>
+                    </li>
+                })}
             </ul>
+            <button></button>
         </SidebarStyles>
     )
 }
