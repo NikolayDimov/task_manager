@@ -59,10 +59,14 @@ export const NavItem = styled.li`
     color: #fff; /* Optional: color change on hover for link text */
   }
 
-   &.isActive {
+  &.isActive {
     color: green;
   }
 `;
+
+export const Button = styled.div`
+  margin: 1.5rem;
+`
 
 
 

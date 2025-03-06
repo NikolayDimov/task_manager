@@ -1,6 +1,6 @@
 'use client';
 import React from 'react'
-import { NavItem, SidebarImage, SidebarStyles, SidebarStylesProfile } from './Sidebar.style';
+import { Button, NavItem, SidebarImage, SidebarStyles, SidebarStylesProfile } from './Sidebar.style';
 import { useGlobalState } from '@/app/context/globalProvider';
 import Image from 'next/image';
 import menu from '@/app/utils/menu';
@@ -34,7 +34,7 @@ function Sidebar() {
 
                 ))}
             </ul>
-            <button></button>
+            <Button></Button>
         </SidebarStyles>
     )
 }
