@@ -4,7 +4,8 @@ import "./globals.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import GlobalStyleProvider from "./providers/GlobalStyleProvider/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider/ContextProvider";
-
+import { ClerkProvider } from "@clerk/nextjs";
+import AuthWrapper from "./AuthWrapper";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -26,22 +27,25 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+
     return (
-        <html lang="en">
-            <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossOrigin="anonymous" referrerPolicy="no-referrer" /></head>
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-                <ContextProvider>
-                    <GlobalStyleProvider >
-                        <Sidebar />
-                        <div className="w-full">{children}</div>
+        <ClerkProvider>
+            <html lang="en">
+                <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossOrigin="anonymous" referrerPolicy="no-referrer" /></head>
+                <body
+                    className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                >
+                    <ContextProvider>
+                        <GlobalStyleProvider >
+                            <AuthWrapper>
+                                {children}
+                            </AuthWrapper>
 
-                    </GlobalStyleProvider >
-                </ContextProvider>
+                        </GlobalStyleProvider >
+                    </ContextProvider>
+                </body>
+            </html>
+        </ClerkProvider>
 
-
-            </body>
-        </html>
     );
 }
