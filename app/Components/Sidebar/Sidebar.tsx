@@ -1,6 +1,6 @@
 'use client';
 import React from 'react'
-import { SidebarImage, SidebarStyles, SidebarStylesProfile } from './Sidebar.style';
+import { NavItem, SidebarImage, SidebarStyles, SidebarStylesProfile } from './Sidebar.style';
 import { useGlobalState } from '@/app/context/globalProvider';
 import Image from 'next/image';
 import menu from '@/app/utils/menu';
@@ -17,6 +17,8 @@ function Sidebar() {
 
 
 
+
+
     return (
         <SidebarStyles theme={theme}>
             <SidebarStylesProfile>
@@ -30,17 +32,14 @@ function Sidebar() {
                 </h1>
             </SidebarStylesProfile>
             <ul className="nav-items">
-                {menu.map((item) => {
-                    const link = item.link;
-                    return <li
-                        className={`nav-item ${pathname === link ? "active" : ""}`}
-                        onClick={() => { handleClick(link) }}
-                        key={item.id}
-                    >
+                {menu.map((item) => (
+
+                    <NavItem key={item.id}>
                         {item.icon}
-                        <Link href={link}>{item.title}</Link>
-                    </li>
-                })}
+                        <Link href={item.link}>{item.title}</Link>
+                    </NavItem>
+
+                ))}
             </ul>
             <button></button>
         </SidebarStyles>
