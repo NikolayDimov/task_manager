@@ -35,7 +35,6 @@ export const SidebarImage = styled.div`
 `;
 
 
-
 export const NavItem = styled.li`
   padding: 10px 15px;
   margin: 5px 0;
@@ -47,7 +46,7 @@ export const NavItem = styled.li`
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    background-color: #555;  /* Change this to whatever color you want */
+    background-color: #555; 
   }
 
   a {
@@ -59,4 +58,11 @@ export const NavItem = styled.li`
   a:hover {
     color: #fff; /* Optional: color change on hover for link text */
   }
+
+   &.isActive {
+    color: green;
+  }
 `;
+
+
+

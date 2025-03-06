@@ -9,14 +9,8 @@ import { usePathname, useRouter } from 'next/navigation';
 
 function Sidebar() {
     const { theme } = useGlobalState();
-    const router = useRouter();
     const pathname = usePathname();
-    const handleClick = (link: string) => {
-        router.push(link)
-    }
-
-
-
+    const isActive = (link: string) => pathname === link;
 
 
     return (
@@ -31,10 +25,9 @@ function Sidebar() {
                     <span>Doe</span>
                 </h1>
             </SidebarStylesProfile>
-            <ul className="nav-items">
+            <ul>
                 {menu.map((item) => (
-
-                    <NavItem key={item.id}>
+                    <NavItem key={item.id} className={isActive(item.link) ? "isActive" : ""}>
                         {item.icon}
                         <Link href={item.link}>{item.title}</Link>
                     </NavItem>
