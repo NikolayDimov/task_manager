@@ -12,6 +12,10 @@ yarn dev
 pnpm dev
 # or
 bun dev
+
+run npx prisma generate 
+run npx prisma studio to open http://localhost:5555/
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
