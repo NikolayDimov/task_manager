@@ -11,6 +11,10 @@ function Sidebar() {
     const { theme } = useGlobalState();
     const pathname = usePathname();
     const isActive = (link: string) => pathname === link;
+    const router = useRouter();
+    const handleClick = (link: string) => {
+        router.push(link);
+    };
 
 
     return (
@@ -26,14 +30,22 @@ function Sidebar() {
                 </h1>
             </SidebarStylesProfile>
             <ul>
-                {menu.map((item) => (
-                    <NavItem key={item.id} className={isActive(item.link) ? "isActive" : ""}>
-                        {item.icon}
-                        <Link href={item.link}>{item.title}</Link>
-                    </NavItem>
-
-                ))}
+                {menu.map((item) => {
+                    return (
+                        <NavItem
+                            key={item.id}
+                            className={isActive(item.link) ? "isActive" : ""}
+                            onClick={() => {
+                                handleClick(item.link);
+                            }}
+                        >
+                            {item.icon}
+                            <Link href={item.link}>{item.title}</Link>
+                        </NavItem>
+                    );
+                })}
             </ul>
+
             <Button></Button>
         </SidebarStyles>
     )

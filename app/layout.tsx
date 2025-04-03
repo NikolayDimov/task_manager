@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "./Components/Sidebar/Sidebar";
 import GlobalStyleProvider from "./providers/GlobalStyleProvider/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider/ContextProvider";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -27,6 +26,7 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+
 
     return (
         <ClerkProvider>
